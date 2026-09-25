@@ -1,0 +1,525 @@
+
+/* ===================================
+   COMPANION WEB APP - VERSION 1
+   Mobile-first responsive design
+   =================================== */
+
+
+/* 1. GENERAL PAGE STYLING */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  background-color: #F2F5F4;
+  color: #24342F;
+
+  line-height: 1.5;
+}
+
+
+/* 2. MAIN APP CONTAINER */
+
+.app {
+  width: 100%;
+  max-width: 760px;
+
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+}
+
+
+/* 3. APP HEADER */
+
+.app-header {
+  background-color: #FFFFFF;
+
+  padding: 24px;
+  border-radius: 16px;
+
+  border: 1px solid #DFE6E1;
+}
+
+.header-title-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.app-header h1 {
+  margin: 0;
+
+  font-size: 28px;
+  color: #24342F;
+}
+
+.profile-avatar {
+  width: 54px;
+  height: 54px;
+  margin-top: 12px;
+  align-self: flex-end;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+  background: linear-gradient(135deg, #294D40, #7AAFA0);
+  color: #FFFFFF;
+  font-size: 22px;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(41, 77, 64, 0.18);
+}
+
+.app-header p {
+  margin: 8px 0 16px;
+
+  color: #596A62;
+}
+
+.connection-status {
+  display: inline-block;
+
+  background-color: #FFF3D6;
+  color: #775615;
+
+  padding: 8px 12px;
+  border-radius: 20px;
+
+  font-size: 13px;
+  font-weight: bold;
+}
+
+
+/* 4. CURRENT STATUS CARD */
+
+.status-card {
+  background-color: #FFFFFF;
+
+  padding: 28px 24px;
+  border-radius: 16px;
+
+  border: 2px solid #DFE6E1;
+}
+
+.status-card h2 {
+  margin: 0 0 20px;
+
+  font-size: 16px;
+  color: #596A62;
+}
+
+#current-status {
+  margin: 0 0 16px;
+
+  font-size: 30px;
+  font-weight: bold;
+
+  line-height: 1.3;
+}
+
+#received-time {
+  margin: 0;
+
+  font-size: 14px;
+  color: #596A62;
+}
+
+
+/* 5. STATUS COLOURS */
+
+/* These styles will be activated
+   later using JavaScript. */
+
+.status-card.is-ok {
+  background-color: #E8F5EC;
+  border-color: #39865A;
+}
+
+.status-card.is-ok #current-status {
+  color: #205D3B;
+}
+
+.status-card.is-break {
+  background-color: #FFF1DC;
+  border-color: #B77C2D;
+}
+
+.status-card.is-break #current-status {
+  color: #805019;
+}
+
+
+/* 6. ACKNOWLEDGEMENT SECTION */
+
+.acknowledgement {
+  background-color: #FFFFFF;
+
+  padding: 24px;
+  border-radius: 16px;
+
+  border: 1px solid #DFE6E1;
+}
+
+.acknowledgement h2 {
+  margin: 0 0 12px;
+
+  font-size: 18px;
+}
+
+#acknowledgement-status {
+  color: #596A62;
+
+  margin-bottom: 20px;
+}
+
+
+/* 7. BUTTON STYLING */
+
+button {
+  width: 100%;
+
+  padding: 16px;
+
+  border: none;
+  border-radius: 10px;
+
+  background-color: #294D40;
+  color: #FFFFFF;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  min-height: 48px;
+}
+
+button:hover:not(:disabled) {
+  background-color: #1B362C;
+}
+
+button:focus-visible {
+  outline: 3px solid #2866C6;
+  outline-offset: 3px;
+}
+
+button:disabled {
+  background-color: #DCE2DF;
+  color: #52615A;
+
+  cursor: not-allowed;
+}
+
+
+/* 8. TEMPORARY TESTING CONTROLS */
+
+.testing-controls {
+  background-color: #E5EBE8;
+
+  padding: 24px;
+  border-radius: 16px;
+
+  border: 1px dashed #A9B8AF;
+
+  display: grid;
+  gap: 12px;
+}
+
+.testing-controls h2 {
+  margin: 0;
+
+  font-size: 16px;
+}
+
+.testing-controls p {
+  margin: 0 0 8px;
+
+  font-size: 14px;
+  color: #596A62;
+}
+
+#simulate-ok {
+  background-color: #286E45;
+}
+
+#simulate-ok:hover {
+  background-color: #205938;
+}
+
+#simulate-break {
+  background-color: #82521D;
+}
+
+#simulate-break:hover {
+  background-color: #663E12;
+}
+
+
+/* ===================================
+   9. RESPONSIVE DESKTOP LAYOUT
+   =================================== */
+
+@media (min-width: 720px) {
+
+  body {
+    padding: 40px;
+  }
+
+  .app {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+}
+
+/* MICRO:BIT CONNECTION CONTROLS */
+
+#connect-microbit {
+  display: block;
+
+  width: 100%;
+  margin-top: 16px;
+}
+
+/* Connected state */
+
+.connection-status.is-connected {
+  background-color: #E8F5EC;
+  color: #205D3B;
+}
+
+/* Connection problem */
+
+.connection-status.is-error {
+  background-color: #FCE8E6;
+  color: #942F27;
+}
+
+
+/* ===================================
+   COMPANION APP - VERSION 4
+   INTERFACE IMPROVEMENTS
+   =================================== */
+
+
+/* HEADER LAYOUT */
+
+.header-title-group {
+
+  flex-direction: row;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 16px;
+
+}
+
+.profile-avatar {
+
+  margin-top: 0;
+
+  align-self: auto;
+
+  flex-shrink: 0;
+
+}
+
+
+/* LATEST RESPONSE CARD */
+
+.status-card {
+
+  grid-column: 1 / -1;
+
+}
+
+.message-state {
+
+  display: inline-block;
+
+  margin: 0 0 16px;
+
+  padding: 6px 12px;
+
+  border-radius: 20px;
+
+  background-color: #E5EBE8;
+
+  color: #294D40;
+
+  font-size: 12px;
+
+  font-weight: bold;
+
+  letter-spacing: 0.04em;
+
+}
+
+.status-card.is-ok .message-state {
+
+  background-color: #D3EBDD;
+
+  color: #205D3B;
+
+}
+
+.status-card.is-break .message-state {
+
+  background-color: #F7DBB4;
+
+  color: #805019;
+
+}
+
+
+/* VIEWED MESSAGE CONTROL */
+
+#acknowledgement-status {
+
+  margin: 24px 0 12px;
+
+  font-size: 14px;
+
+  color: #596A62;
+
+}
+
+
+/* MESSAGE HISTORY */
+
+.message-history {
+
+  grid-column: 1 / -1;
+
+  background-color: #FFFFFF;
+
+  padding: 24px;
+
+  border-radius: 16px;
+
+  border: 1px solid #DFE6E1;
+
+}
+
+.message-history h2 {
+
+  margin: 0 0 16px;
+
+  font-size: 18px;
+
+}
+
+#history-empty {
+
+  color: #596A62;
+
+  font-size: 14px;
+
+}
+
+#history-list {
+
+  margin: 0;
+
+  padding: 0;
+
+  list-style: none;
+
+  display: grid;
+
+  gap: 10px;
+
+}
+
+.history-item {
+
+  padding: 16px;
+
+  border-radius: 10px;
+
+  border: 1px solid #DFE6E1;
+
+  background-color: #F7F9F8;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+
+  overflow-wrap: anywhere;
+
+}
+
+
+/* COLLAPSIBLE TESTING CONTROLS */
+
+.testing-controls {
+
+  grid-column: 1 / -1;
+
+  display: block;
+
+}
+
+.testing-controls summary {
+
+  cursor: pointer;
+
+  font-weight: bold;
+
+}
+
+.testing-controls summary:focus-visible {
+
+  outline: 3px solid #2866C6;
+
+  outline-offset: 4px;
+
+}
+
+.testing-controls p {
+
+  margin: 16px 0;
+
+}
+
+.test-buttons {
+
+  display: grid;
+
+  gap: 12px;
+
+}
+
+
+/* DESKTOP TEST BUTTONS */
+
+@media (min-width: 720px) {
+
+  .test-buttons {
+
+    grid-template-columns: 1fr 1fr;
+
+  }
+
+}
+
+/* ===================================
+   DESKTOP APP WIDTH
+   =================================== */
+
+.app {
+  width: 100%;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}

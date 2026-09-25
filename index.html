@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Sensory Signals</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="script.js" defer></script>
+</head>
+
+
+<body>
+
+  <main class="app">
+
+
+<!-- CONNECTION HEADER -->
+
+<header class="app-header">
+
+  <div class="header-title-group">
+    <h1>Sensory Signals</h1>
+
+    <div class="profile-avatar"
+         aria-label="Profile icon">J</div>
+  </div>
+
+  <p>Jade's wearable companion app</p>
+
+  <span class="connection-status"
+        id="connection-status">
+    Bluetooth not connected
+  </span>
+
+  <button id="connect-microbit">
+    Connect Bluetooth
+  </button>
+
+</header>
+
+
+<!-- LATEST RESPONSE -->
+
+<section class="status-card">
+
+  <p id="message-state"
+     class="message-state"
+     role="status">
+    WAITING FOR A RESPONSE
+  </p>
+
+  <h2>Latest check-in response</h2>
+
+  <p id="current-status" aria-live="polite">
+    Waiting for a new response
+  </p>
+
+  <p id="received-time">
+    New responses will appear here.
+  </p>
+
+  <p id="acknowledgement-status">
+    No new responses to view.
+  </p>
+
+  <button id="acknowledge-button" disabled>
+    Mark as viewed
+  </button>
+
+</section>
+
+
+<!-- MESSAGE HISTORY -->
+
+<section class="message-history">
+
+  <h2>Message history</h2>
+
+  <p id="history-empty">
+    No responses received in this session.
+  </p>
+
+  <ol id="history-list"
+      aria-label="Received responses">
+  </ol>
+
+</section>
+
+
+<!-- DEVELOPER TESTING CONTROLS -->
+
+<details class="testing-controls">
+
+  <summary>Developer testing controls</summary>
+
+  <p>
+    Simulate incoming messages without
+    connecting the wearable.
+  </p>
+
+  <div class="test-buttons">
+
+    <button id="simulate-ok">
+      I'M OKAY
+    </button>
+
+    <button id="simulate-break">
+      I NEED A BREAK
+    </button>
+
+  </div>
+
+
+  </details>
+
+  </main>
+
+</body>
+
+</html>
+
