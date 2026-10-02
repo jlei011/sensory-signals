@@ -1,6 +1,6 @@
-
 /* =========================================
-   COMPANION WEB APP - V3
+   COMPANION WEB APP - V4
+
    BLUETOOTH CONNECTION
 
    This code runs in the WEB BROWSER,
@@ -42,7 +42,6 @@ const connectButton =
 const connectionStatus =
   document.getElementById("connection-status");
 
-  
 const messageState =
   document.getElementById("message-state");
 
@@ -129,10 +128,22 @@ function renderHistory() {
 
     // Format the response text.
 
-    const responseText =
-      entry.response === "OK"
-        ? "I'm okay"
-        : "I need a break";
+    let responseText;
+
+    if (entry.response === "OK") {
+
+      responseText = "I'm okay";
+
+    } else if (entry.response === "BREAK") {
+
+      responseText = "I need a break";
+
+    } else if (entry.response === "HELP") {
+
+      responseText =
+        "I need help / I want to leave";
+
+    }
 
     // Identify whether it was viewed.
 
@@ -187,7 +198,8 @@ function receiveResponse(
 
   if (
     response !== "OK" &&
-    response !== "BREAK"
+    response !== "BREAK" &&
+    response !== "HELP"
   ) {
     return;
   }
@@ -244,10 +256,17 @@ function receiveResponse(
 
     statusCard.classList.add("is-ok");
 
-  } else {
+  } else if (response === "BREAK") {
 
     currentStatus.textContent =
       "I need a break";
+
+    statusCard.classList.add("is-break");
+
+  } else if (response === "HELP") {
+
+    currentStatus.textContent =
+      "I need help / I want to leave";
 
     statusCard.classList.add("is-break");
 
@@ -335,7 +354,8 @@ acknowledgeButton.addEventListener(
     showWaitingState();
 
   }
-); 
+);
+
 
 /* =========================================
    6. BLUETOOTH UART SETTINGS
@@ -498,7 +518,8 @@ function handleBluetoothData(event) {
 
     if (
       message === "OK" ||
-      message === "BREAK"
+      message === "BREAK" ||
+      message === "HELP"
     ) {
 
       console.log(
@@ -575,6 +596,7 @@ connectButton.addEventListener(
       );
 
       return;
+
     }
 
     isConnecting = true;
